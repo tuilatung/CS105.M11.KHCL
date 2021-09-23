@@ -10,36 +10,30 @@ void CLine::MidPoint(CDC* pDC, int x_center, int y_center, float r, COLORREF col
 
 void CLine::_MidPoint(CDC* pDC, int x_center, int y_center, float r, COLORREF color)
 {
-	float f = 1 - r;
-	int x = 20;
-	int y = r;
-	int x_new, y_new;
-	pDC->SetPixel(500, 400, color);
-	/*pDC->SetPixel(x + x_center, y + y_center, color);
+    int x = 0, y = r;
+    // ve 4 diem ban dau la 4 goc phan tu 
+    pDC->SetPixel(x + x_center, y + y_center, color);
 	pDC->SetPixel(x + x_center, -y + y_center, color);
 	pDC->SetPixel(y + x_center, x + y_center, color);
-	pDC->SetPixel(-y + x_center, x + y_center, color);*/
-	while (x <= (r/sqrt(2)))
-	{
-		x++;
-		f = (f < 0) ? (f + (x << 1) + 3) : (f + (x << 1) - (y << 1) + 5);
+	pDC->SetPixel(-y + x_center, x + y_center, color);
+    int f = 1 - r;
+    while (x <= (r / sqrt(2)))
+    {
+        x++;
 		if (f < 0)
-		{
-			x_new = x + 1;
-			y_new = y;
-		}
-		else
-		{
-			x_new = x + 1;
-			y_new = --y;
-		}		
-		pDC->SetPixel(x_new + x_center, y_new + y_center, color);
-		pDC->SetPixel(-x_new + x_center, y_new + y_center, color);
-		pDC->SetPixel(x_new + x_center, -y_new + y_center, color);
-		pDC->SetPixel(-x_new + x_center, -y_new + y_center, color);
-		pDC->SetPixel(y_new + x_center, x_new + y_center, color);
-		pDC->SetPixel(-y_new + x_center, x_new + y_center, color);
-		pDC->SetPixel(y_new + x_center, -x_new + y_center, color);
-		pDC->SetPixel(-y_new + x_center, -x_new + y_center, color);
-	}
+			f = f + (x << 1) + 1;
+        else
+        {
+            y--;
+			f = f + (x << 1) - (y << 1) + 5;
+        }
+        pDC->SetPixel(x + x_center, y + y_center, color);
+        pDC->SetPixel(-x + x_center, y + y_center, color);
+        pDC->SetPixel(x + x_center, -y + y_center, color);
+        pDC->SetPixel(-x + x_center, -y + y_center, color);
+		pDC->SetPixel(y + x_center, x + y_center, color);
+		pDC->SetPixel(-y + x_center, x + y_center, color);
+		pDC->SetPixel(y + x_center, -x + y_center, color);
+		pDC->SetPixel(-y + x_center, -x + y_center, color);
+    }
 }
