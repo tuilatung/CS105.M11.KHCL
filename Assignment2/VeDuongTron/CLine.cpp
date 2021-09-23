@@ -27,27 +27,19 @@ void CLine::_MidPoint(CDC* pDC, int x_center, int y_center, float r, COLORREF co
 		{
 			x_new = x + 1;
 			y_new = y;
-			pDC->SetPixel(x_new + x_center, y_new + y_center, color);
-			pDC->SetPixel(-x_new + x_center, y_new + y_center, color);
-			pDC->SetPixel(x_new + x_center, -y_new + y_center, color);
-			pDC->SetPixel(-x_new + x_center, -y_new + y_center, color);
-			pDC->SetPixel(y_new + x_center, x_new + y_center, color);
-			pDC->SetPixel(-y_new + x_center, x_new + y_center, color);
-			pDC->SetPixel(y_new + x_center, -x_new + y_center, color);
-			pDC->SetPixel(-y_new + x_center, -x_new + y_center, color);
 		}
 		else
 		{
 			x_new = x + 1;
 			y_new = --y;
-			pDC->SetPixel(x_new + x_center, y_new + y_center, color);
-			pDC->SetPixel(-x_new + x_center, y_new + y_center, color);
-			pDC->SetPixel(x_new + x_center, -y_new + y_center, color);
-			pDC->SetPixel(-x_new + x_center, -y_new + y_center, color);
-			pDC->SetPixel(y_new + x_center, x_new + y_center, color);
-			pDC->SetPixel(-y_new + x_center, x_new + y_center, color);
-			pDC->SetPixel(y_new + x_center, -x_new + y_center, color);
-			pDC->SetPixel(-y_new + x_center, -x_new + y_center, color);
 		}		
+		pDC->SetPixel(x_new + x_center, y_new + y_center, color);
+		pDC->SetPixel(-x_new + x_center, y_new + y_center, color);
+		pDC->SetPixel(x_new + x_center, -y_new + y_center, color);
+		pDC->SetPixel(-x_new + x_center, -y_new + y_center, color);
+		pDC->SetPixel(y_new + x_center, x_new + y_center, color);
+		pDC->SetPixel(-y_new + x_center, x_new + y_center, color);
+		pDC->SetPixel(y_new + x_center, -x_new + y_center, color);
+		pDC->SetPixel(-y_new + x_center, -x_new + y_center, color);
 	}
 }
