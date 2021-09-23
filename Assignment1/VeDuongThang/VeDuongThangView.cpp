@@ -61,8 +61,8 @@ void CVeDuongThangView::OnDraw(CDC* pDC)
 		return;
 	CLine::LineDDA(pDC, 100, 100, 300, 300, RGB(255, 0, 0));
 	CLine::LineDDA(pDC, 300, 100, 100, 300, RGB(0, 0, 0));
-	CLine::LineBresenham(pDC, 300, 500, 600, 600, RGB(255, 255, 0));
-	CLine::LineBresenham(pDC, 600, 600, 300, 400, RGB(255, 0, 0));
+	CLine::LineBresenham(pDC, 300, 500, 600, 600, RGB(0, 0, 255));
+	CLine::LineBresenham(pDC, 800, 300, 300, 400, RGB(255, 0, 0));
 	// TODO: add draw code for native data here
 }
 
