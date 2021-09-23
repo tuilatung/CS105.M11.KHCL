@@ -3,9 +3,9 @@
 
 void CLine::MidPoint(CDC* pDC, int x_center, int y_center, float r, COLORREF color)
 {
-	if (r <= 0.0)
-		return;
-	_MidPoint(pDC, x_center, y_center, r, color);
+    if (r <= 0.0)
+        return;
+    _MidPoint(pDC, x_center, y_center, r, color);
 }
 
 void CLine::MidPoint(CDC* pDC, CPoint center, float r, COLORREF color)
@@ -30,13 +30,13 @@ void CLine::_MidPoint(CDC* pDC, int x_center, int y_center, float r, COLORREF co
         else
         {
             y--;
-		    f = f + (x << 1) - (y << 1) + 5;
+            f = f + (x << 1) - (y << 1) + 5;
         }
         pDC->SetPixel(x + x_center, y + y_center, color);
         pDC->SetPixel(-x + x_center, y + y_center, color);
         pDC->SetPixel(x + x_center, -y + y_center, color);
         pDC->SetPixel(-x + x_center, -y + y_center, color);
-	    pDC->SetPixel(y + x_center, x + y_center, color);
+        pDC->SetPixel(y + x_center, x + y_center, color);
         pDC->SetPixel(-y + x_center, x + y_center, color);
         pDC->SetPixel(y + x_center, -x + y_center, color);
         pDC->SetPixel(-y + x_center, -x + y_center, color);
