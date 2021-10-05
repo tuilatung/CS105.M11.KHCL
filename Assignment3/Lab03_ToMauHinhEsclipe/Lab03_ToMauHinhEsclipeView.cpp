@@ -12,6 +12,9 @@
 
 #include "Lab03_ToMauHinhEsclipeDoc.h"
 #include "Lab03_ToMauHinhEsclipeView.h"
+#include "CShape.h"
+#include "CLine.h"
+#include "CFill.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -59,8 +62,11 @@ void CLab03ToMauHinhEsclipeView::OnDraw(CDC* pDC)
 	ASSERT_VALID(pDoc);
 	if (!pDoc)
 		return;
-
+	
 	// TODO: add draw code for native data here
+	// Ve duong tron
+	CShape::Star(pDC, 300, 300, 80, RGB(0, 255, 0), 7);
+	CFill::BoundaryFillEnhanced(pDC, 300, 300, RGB(255, 0, 0), RGB(0, 255, 0));
 }
 
 

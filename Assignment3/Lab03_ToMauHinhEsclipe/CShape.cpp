@@ -69,8 +69,8 @@ void CShape::Star(CDC* pDC, int xc, int yc, int R, COLORREF color, int n)
 	{
 		x[i] = R * cos(alpha) + xc;
 		y[i] = R * sin(alpha) + yc;
-		//x[i+1] = r * cos(alpha) + I.x; // Dùng hai dòng này để vẽ phi tiêu
-		//y[i+1] = r * sin(alpha) + I.y;
+		//x[i+1] = r * cos(alpha) + xc; // Dùng hai dòng này để vẽ phi tiêu
+		//y[i+1] = r * sin(alpha) + yc;
 		x[i + 1] = r * cos(alpha + const1) + xc; //Dùng hai dòng này để vẽ sao như bình thường
 		y[i + 1] = r * sin(alpha + const1) + yc;
 
@@ -78,6 +78,6 @@ void CShape::Star(CDC* pDC, int xc, int yc, int R, COLORREF color, int n)
 	}
 
 	for (i = 0; i < 2 * n - 1; ++i)
-		CLine::LineBresenham(pDC, x[i], y[i], x[i + 1], y[i + 1], color);
-	CLine::LineBresenham(pDC, x[2 * n - 1], y[2 * n - 1], x[0], y[0], color);
+		CLine::LineDDA(pDC, x[i], y[i], x[i + 1], y[i + 1], color);
+	CLine::LineDDA(pDC, x[2 * n - 1], y[2 * n - 1], x[0], y[0], color);
 }
