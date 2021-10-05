@@ -65,7 +65,7 @@ void CLab03ToMauHinhEsclipeView::OnDraw(CDC* pDC)
 	
 	// TODO: add draw code for native data here
 	// Ve duong tron
-	CShape::Star(pDC, 300, 300, 80, RGB(0, 255, 0), 7);
+	CShape::Ellipse(pDC, 80, 40, 300, 300, RGB(0, 255, 0)); // radius 80 40 at center (300, 300)
 	CFill::BoundaryFillEnhanced(pDC, 300, 300, RGB(255, 0, 0), RGB(0, 255, 0));
 }
 
