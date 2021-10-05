@@ -5,3 +5,8 @@ Assignment2/VeDuongTron/Debug/VeDuongTronDoc.obj
 Assignment2/VeDuongTron/Debug/
 Assignment2/VeDuongTron/res/
 Assignment2/VeDuongTron/.vs/
+*.suo
+*.db
+*.ipch
+Assignment3/Lab03_ToMauHinhEsclipe/.vs/
+Assignment3/Lab03_ToMauHinhEsclipe/Debug/
