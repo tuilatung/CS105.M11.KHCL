@@ -78,8 +78,8 @@ void CShape::Star(CDC* pDC, int xc, int yc, int R, COLORREF color, int n)
 	}
 
 	for (i = 0; i < 2 * n - 1; ++i)
-		CLine::LineDDA(pDC, x[i], y[i], x[i + 1], y[i + 1], color);
-	CLine::LineDDA(pDC, x[2 * n - 1], y[2 * n - 1], x[0], y[0], color);
+		CLine::LineBresenham(pDC, x[i], y[i], x[i + 1], y[i + 1], color);
+	CLine::LineBresenham(pDC, x[2 * n - 1], y[2 * n - 1], x[0], y[0], color);
 }
 
 void CShape::Ellipse(CDC* pDC, int rx, int ry, int xc, int yc, COLORREF color)
