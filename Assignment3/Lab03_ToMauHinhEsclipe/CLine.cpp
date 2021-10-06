@@ -88,99 +88,58 @@ void CLine::_LineDDA2(CDC* pDC, int x1, int y1, int x2, int y2, COLORREF color) 
 }
 void CLine::_LineBresenham1(CDC* pDC, int x1, int y1, int x2, int y2, COLORREF color) {
 
-	//int Dx = abs(x2 - x1);
-	//int Dy = abs(y2 - y1);
-	//int yStep = Dy >= 0 ? 1 : -1;
-
-	//// Giai thuat chinh
-	//int const1 = Dx << 1; // const1 = 2 * Dx
-	//int const2 = (Dy - Dx) << 1; // const2 = 2 * (Dy - Dx)
-	//int const3 = Dy << 1; // const3 = 2 * Dy
-	//int p = const1 - Dx;
-
-	//pDC->SetPixel(x1, y1, color);
-	//while (x1 < x2)
-	//{
-	//	p = p < 0 ? p += const3 : p += const2;
-	//	if (p < 0)
-	//		pDC->SetPixel(x1, y1, color);
-	//	else
-	//		pDC->SetPixel(x1, ++y1, color);
-	//	x1++;
-	//}
-
-	int Delta_x = abs(x2 - x1);
-	int Delta_y = abs(y2 - y1);
-	int p = 2 * Delta_y - Delta_x;
-	int c1 = 2 * Delta_y;
-	int c2 = 2 * (Delta_y - Delta_x);
-	int x = x1;
-	int y = y1;
-	int k = 0;
+	int Dx = abs(x2 - x1);
+	int Dy = abs(y2 - y1);
+	int step = 0;
 	if (y1 < y2)
-		k = 1;
-	if (y2 < y1)
-		k = -1;
+		step = 1;
+	else if (y1 > y2)
+		step = -1;
+
+	int const2 = (Dy - Dx) << 1; // const2 = 2 * (Dy - Dx)
+	int const3 = Dy << 1; // const3 = 2 * Dy
+	int p = const3 - Dx;
+
 	pDC->SetPixel(x1, y1, color);
-	while (x <= x2)
+	while (x1 <= x2)
 	{
 		if (p < 0)
-			p += c1;
+			p += const3;
 		else
 		{
-			p += c2;
-			y += k;
+			p += const2;
+			y1 += step;
 		}
-		x++;
-		pDC->SetPixel(x, y, color);
+		x1++;
+		pDC->SetPixel(x1, y1, color);
 	}
 }
 void CLine::_LineBresenham2(CDC* pDC, int x1, int y1, int x2, int y2, COLORREF color) {
 
-	//int Dx = abs(x2 - x1);
-	//int Dy = abs(y2 - y1);
-	//int yStep = Dy >= 0 ? 1 : -1;
+	int Dx = abs(x2 - x1);
+	int Dy = abs(y2 - y1);
+	int step = 0;
+	if (x2 > x1)
+		step = 1;
+	else if (x2 < x1)
+		step = -1;
 
-	//// Giai thuat chinh
-	//int const1 = Dy << 1; // const1 = 2 * Dy
-	//int const2 = (Dx - Dy) << 1; // const2 = 2 * (Dx - Dy)
-	//int const3 = Dx << 1; // const3 = 2 * Dx
-	//int p = const1 - Dx;
+	int const1 = Dx << 1; // const1 = 2 * Dx
+	int const2 = (Dx - Dy) << 1; // const2 = 2 * (Dx - Dy)
+	int p = const1 - Dy;
 
-	//pDC->SetPixel(x1, y1, color);
-	//while (y1 < y2)
-	//{
-	//	y1++;
-	//	p = p < 0 ? p += const3 : p += const2;
-	//	if (p < 0)
-	//		pDC->SetPixel(x1, y1, color);
-	//	else
-	//		pDC->SetPixel(x1++, y1, color);
-	//}
-	int Delta_x = abs(x2 - x1);
-	int Delta_y = abs(y2 - y1);
-	int p = 2 * Delta_x - Delta_y;
-	int c1 = 2 * Delta_x;
-	int c2 = 2 * (Delta_x - Delta_y);
-	int x = x1;
-	int y = y1;
-	int k = 0;
-	if (x1 < x2)
-		k = 1;
-	if (x2 < x1)
-		k = -1;
 	pDC->SetPixel(x1, y1, color);
-	while (y <= y2)
+	while (y1 <= y2)
 	{
 		if (p < 0)
-			p += c1;
+			p += const1;
 		else
 		{
-			p += c2;
-			x += k;
+			p += const2;
+			x1 += step;
 		}
-		y++;
-		pDC->SetPixel(x, y, color);
+		y1++;
+		pDC->SetPixel(x1, y1, color);
 	}
 }
 
