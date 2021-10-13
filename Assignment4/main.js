@@ -1,3 +1,12 @@
+/*
+    Họ tên: Huỳnh Thiện Tùng
+    MSSV:   19522492
+    LAB:    04  
+
+*/
+
+
+
 function init() {
     var scene = new THREE.Scene();
 
