@@ -1,7 +1,7 @@
 /*
     Họ tên: Huỳnh Thiện Tùng
     MSSV:   19522492
-    LAB:    04  
+    LAB:    05 
 
 */
 
@@ -13,10 +13,13 @@ function init() {
     var box = getBox(1, 1, 1);
     var plane = getPlane(4);
 
+    plane.name = 'plane-1';
+
     box.position.y = box.geometry.parameters.height/2;
     plane.rotation.x = Math.PI/2;
+    plane.position.y = 1;
 
-    scene.add(box);
+    plane.add(box);
     scene.add(plane);
 
     var camera = new THREE.PerspectiveCamera(
@@ -26,11 +29,11 @@ function init() {
         1000
     );
 
-    camera.position.x = 1;
+    camera.position.x = 5;
     camera.position.y = 2;
     camera.position.z = 5;
 
-    camera.lookAt(new THREE.Vector3(0, 0, 0));
+    camera.lookAt(new THREE.Vector3(1, 2, -1));
 
 
     var renderer = new THREE.WebGLRenderer();
@@ -40,6 +43,8 @@ function init() {
         scene,
         camera
     );
+    update( renderer, scene, camera );
+    return scene;
 }
 
 function getBox(w, h, d) {
@@ -67,5 +72,23 @@ function getPlane(size) {
     return mesh;
 }
 
+function update( renderer, scene, camera ) {
+    renderer.render(
+        scene,
+        camera
+    );
 
-init();
+    var plane = scene.getObjectByName('plane-1');
+    plane.rotation.y += 0.001;
+    plane.rotation.z += 0.001;
+
+    scene.traverse(function(child) {
+        child.scale.x += 0.001;
+    });
+
+    requestAnimationFrame(function() {
+        update( renderer, scene, camera );
+    });
+}
+
+var scene = init();
