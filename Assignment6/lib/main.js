@@ -10,6 +10,7 @@
 function init() {
     var scene = new THREE.Scene();
     var gui = new dat.GUI();
+    var clock = new THREE.Clock();
 
     var enableFog = false;
     if (enableFog) {
@@ -23,6 +24,8 @@ function init() {
     var helper = new THREE.CameraHelper(directionalLight.shadow.camera);
     var ambientLight = getAmbientLight(1);
 
+
+    boxGrid.name = 'boxGrid';
     plane.name = 'plane-1';
 
     plane.rotation.x = Math.PI/2;
@@ -40,7 +43,7 @@ function init() {
     directionalLight.add(sphere);
     scene.add(directionalLight);
     scene.add(boxGrid);
-    scene.add(helper);
+    // scene.add(helper);
     scene.add(ambientLight);
 
     var camera = new THREE.PerspectiveCamera(
@@ -65,7 +68,7 @@ function init() {
     
     var controls = new THREE.OrbitControls(camera, renderer.domElement);
 
-    update( renderer, scene, camera, controls );
+    update( renderer, scene, camera, controls, clock );
     return scene;
 }
 
@@ -162,14 +165,23 @@ function getAmbientLight(intensity) {
     return light;
 }
 
-function update( renderer, scene, camera, controls ) {
+function update( renderer, scene, camera, controls, clock ) {
     renderer.render(
         scene,
         camera
     );
     controls.update();
+    var boxGrid = scene.getObjectByName('boxGrid');
+
+    var timeElapsed = clock.getElapsedTime();
+
+    boxGrid.children.forEach(function (child, index) {
+        child.scale.y = (Math.sin(timeElapsed * 5 + index) + 1) / 2 + 0.001;
+        child.position.y = child.scale.y / 2;
+    });
+
     requestAnimationFrame(function() {
-        update( renderer, scene, camera, controls );
+        update( renderer, scene, camera, controls, clock );
     });
 }
 
